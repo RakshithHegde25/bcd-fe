@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error | BreastcareAI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <img
+            src="{{ url_for('static', filename='images/logo-light.svg') }}"
+            alt="BreastcareAI Logo"
+            class="logo-light"
+          />
+          <img
+            src="{{ url_for('static', filename='images/logo-dark.svg') }}"
+            alt="BreastcareAI Logo"
+            class="logo-dark"
+          />
+          <span>BreastcareAI</span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="card" style="text-align: center">
+        <div class="card-header">
+          <h2>Error</h2>
+        </div>
+        <div class="card-body">
+          <div
+            style="font-size: 3rem; color: var(--danger); margin-bottom: 1rem"
+          >
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <p style="font-size: 1.2rem; margin-bottom: 1.5rem">
+            {{ error_message }}
+          </p>
+          <a href="/" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Return to Home
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 BreastcareAI | Medical Diagnostic System</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  </body>
+</html>

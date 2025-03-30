@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BreastcareAI - JSON Input</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/themes.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <img
+            src="{{ url_for('static', filename='images/brain.svg') }}"
+            alt="BreastcareAI Logo"
+            class="logo-light"
+          />
+          <img
+            src="{{ url_for('static', filename='images/brain.svg') }}"
+            alt="BreastcareAI Logo"
+            class="logo-dark"
+          />
+          <span>BreastcareAI</span>
+        </div>
+        <div class="navbar-actions">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Breast Cancer Detection</h1>
+          <p>
+            Submit diagnostic data in JSON format for analysis (Accuracy: {{
+            model_accuracy }}%)
+          </p>
+        </div>
+      </section>
+
+      <div class="card-container">
+        <div class="card">
+          <div class="card-header">
+            <h2><i class="fas fa-file-import"></i> JSON Input</h2>
+          </div>
+          <div class="card-body">
+            <form id="json-form">
+              <div class="form-group">
+                <label for="json-data">Enter Diagnostic Data (JSON):</label>
+                <textarea id="json-data" class="json-input" required>
+{
+    "radius_mean": 17.99,
+    "texture_mean": 10.38,
+    "perimeter_mean": 122.8,
+    "area_mean": 1001.0,
+    "smoothness_mean": 0.1184,
+    "compactness_mean": 0.2776,
+    "concavity_mean": 0.3001,
+    "concave_points_mean": 0.1471,
+    "symmetry_mean": 0.2419,
+    "fractal_dimension_mean": 0.07871,
+    "radius_se": 1.095,
+    "texture_se": 0.9053,
+    "perimeter_se": 8.589,
+    "area_se": 153.4,
+    "smoothness_se": 0.006399,
+    "compactness_se": 0.04904,
+    "concavity_se": 0.05373,
+    "concave_points_se": 0.01587,
+    "symmetry_se": 0.03003,
+    "fractal_dimension_se": 0.006193,
+    "radius_worst": 25.38,
+    "texture_worst": 17.33,
+    "perimeter_worst": 184.6,
+    "area_worst": 2019.0,
+    "smoothness_worst": 0.1622,
+    "compactness_worst": 0.6656,
+    "concavity_worst": 0.7119,
+    "concave_points_worst": 0.2654,
+    "symmetry_worst": 0.4601,
+    "fractal_dimension_worst": 0.1189
+}</textarea
+                >
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-chart-line"></i> Analyze JSON
+              </button>
+            </form>
+            <div id="json-result" class="result-container"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2><i class="fas fa-upload"></i> Image Analysis</h2>
+          </div>
+          <div class="card-body">
+            <form
+              id="upload-form"
+              action="/upload"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              <div class="file-upload">
+                <label for="scan-upload" class="upload-label">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <span>Upload Breast Scan Image</span>
+                </label>
+                <input
+                  type="file"
+                  id="scan-upload"
+                  name="file"
+                  accept="image/*"
+                  required
+                />
+                <div class="file-info" id="file-info">No file selected</div>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Analyze Image
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 BreastcareAI | Medical Diagnostic System</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Results | BreastcareAI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/themes.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <img
+            src="{{ url_for('static', filename='brain/logo-light.svg') }}"
+            alt="BreastcareAI Logo"
+            class="logo-light"
+          />
+          <img
+            src="{{ url_for('static', filename='brain/logo-dark.svg') }}"
+            alt="BreastcareAI Logo"
+            class="logo-dark"
+          />
+          <span>BreastcareAI</span>
+        </div>
+        <div class="navbar-actions">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="card">
+        <div class="card-header">
+          <h2>Diagnosis Results</h2>
+        </div>
+        <div class="card-body">
+          <div
+            class="diagnosis-result {{ 'diagnosis-malignant' if diagnosis == 'Malignant' else 'diagnosis-benign' }}"
+          >
+            {{ diagnosis }}
+          </div>
+
+          <div class="result-details">
+            <p><strong>Confidence:</strong> {{ confidence }}%</p>
+            <p><strong>Model Accuracy:</strong> {{ accuracy }}%</p>
+          </div>
+
+          {% if file_path %}
+          <div class="image-preview">
+            <h3>Uploaded Image:</h3>
+            <img
+              src="{{ url_for('static', filename=file_path) }}"
+              alt="Scan Preview"
+            />
+          </div>
+          {% endif %}
+
+          <div class="features-toggle" onclick="toggleFeatures()">
+            <i class="fas fa-chevron-down"></i> Show Features Used
+          </div>
+          <div class="features-container" style="display: none">
+            <pre>{{ features|tojson(indent=2) }}</pre>
+          </div>
+
+          <a href="/" class="btn btn-primary" style="margin-top: 1.5rem">
+            <i class="fas fa-arrow-left"></i> New Analysis
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 BreastcareAI | Medical Diagnostic System</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <script>
+      function toggleFeatures() {
+        const container = document.querySelector(".features-container");
+        const toggle = document.querySelector(".features-toggle i");
+
+        if (container.style.display === "none") {
+          container.style.display = "block";
+          toggle.classList.remove("fa-chevron-down");
+          toggle.classList.add("fa-chevron-up");
+        } else {
+          container.style.display = "none";
+          toggle.classList.remove("fa-chevron-up");
+          toggle.classList.add("fa-chevron-down");
+        }
+      }
+    </script>
+  </body>
+</html>

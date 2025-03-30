@@ -1,0 +1,35 @@
+[data-theme="dark"] {
+  --primary: #5d8acd;
+  --primary-dark: #4a6fa5;
+  --text: #f0f0f0;
+  --text-light: #b0b0b0;
+  --bg: #121212;
+  --card-bg: #1e1e1e;
+  --border: #333;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .logo-light {
+  display: none;
+}
+[data-theme="dark"] .logo-dark {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+  display: none;
+}
+[data-theme="dark"] .theme-toggle .fa-sun {
+  display: block;
+}
+
+[data-theme="dark"] .json-input {
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+  border-color: #444;
+}
+
+[data-theme="dark"] .features-container {
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+}
